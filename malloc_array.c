@@ -21,6 +21,8 @@ int main(void)
 		Arr[i] = i + 1;
 	}
 
+	free(Arr);
+
 	for (int j = 0; j < n; j++)
 	{
 		printf("%d\n", Arr[j]);
