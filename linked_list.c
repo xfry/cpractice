@@ -11,18 +11,21 @@ struct Point
 
 typedef struct Point *List_Ptr;
 
-void add_node(List_Ptr node, int, int);
+List_Ptr add_node(List_Ptr node, int, int);
 
 int main(void)
 {
 	List_Ptr first = NULL;
-	add_node(first, 200, 100);
+	List_Ptr temp = add_node(first, 200, 100);
+	printf("node added: x %f, y %f\n", temp->x, temp->y);
 
 	free(first);
+	free(temp);
+
 	return (0);
 }
 
-void add_node(List_Ptr node, int x, int y)
+List_Ptr add_node(List_Ptr node, int x, int y)
 {
 	if(node == NULL)
 	{
@@ -32,5 +35,5 @@ void add_node(List_Ptr node, int x, int y)
 		node->next = NULL;
 	}
 
-	printf("node added: x %f, y %f\n", node->x, node->y);
+	return node;
 }
