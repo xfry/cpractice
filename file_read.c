@@ -4,8 +4,15 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-
-int main()
+/**
+ * main - a function to open and read the content of a file
+ * @void: no parameters
+ *
+ * description: a function to open a file, store its content in to a
+ * array buffer and then go through it printing every character.
+ * return: 0 if it works, and -1 if it does not.
+ */
+int main(void)
 {
 	int file_descriptor;
 	ssize_t readed_bytes;
@@ -23,6 +30,8 @@ int main()
 
 	/* reading the content and passing it to a buffer of char characters. */
 	readed_bytes = read(file_descriptor, buff, buff_size);
+	if(readed_bytes == 0)
+		return (-1);
 
 	for(count = 0; count < buff_size; count ++)
 	{
@@ -31,7 +40,6 @@ int main()
 		printf("%c", buff[count]);
 	}
 
-	(void)readed_bytes; /* compiler ignores this unused variable */
 	printf("size of buffer: %lu \n", buff_size);
 
 	close(file_descriptor);
