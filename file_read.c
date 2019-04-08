@@ -30,12 +30,12 @@ int main(void)
 
 	/* reading the content and passing it to a buffer of char characters. */
 	readed_bytes = read(file_descriptor, buff, buff_size);
-	if(readed_bytes == 0)
+	if (readed_bytes == 0)
 		return (-1);
 
-	for(count = 0; count < buff_size; count ++)
+	for (count = 0; count < buff_size; count++)
 	{
-		if(buff[count] == '\0')
+		if (buff[count] == '\0')
 			break;
 		printf("%c", buff[count]);
 	}
