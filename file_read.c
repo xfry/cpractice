@@ -9,6 +9,7 @@ int main()
 {
 	int file_descriptor;
 	ssize_t readed_bytes;
+	size_t count;
 	char buff[100];
 	unsigned long int buff_size = sizeof(buff) / sizeof(buff[0]);
 
@@ -20,8 +21,18 @@ int main()
 		exit(1);
 	}
 
+	/* reading the content and passing it to a buffer of char characters. */
+	readed_bytes = read(file_descriptor, buff, buff_size);
+
+	for(count = 0; count < buff_size; count ++)
+	{
+		if(buff[count] == '\0')
+			break;
+		printf("%c", buff[count]);
+	}
+
 	(void)readed_bytes; /* compiler ignores this unused variable */
-	printf("size of text: %lu", buff_size);
+	printf("size of buffer: %lu \n", buff_size);
 
 	close(file_descriptor);
 
