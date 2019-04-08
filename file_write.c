@@ -1,5 +1,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -12,13 +13,20 @@
  */
 int main(void)
 {
-	int fd; /* a non negative file descriptor */
+	int file_descriptor; /* a non negative file descriptor */
 	char text[] = "A text to write inside a file.\n";
 	unsigned long int text_size = sizeof(text) / sizeof(text[0]);
 
-	fd = open("a_file.txt", O_CREAT | O_WRONLY, 0600);
-	write(fd, text, text_size); /* you need unistd.h to do it works. */
+	file_descriptor = open("a_file.txt", O_CREAT | O_WRONLY, 0600);
 
-	close(fd);
+	if (file_descriptor == -1)
+	{
+		printf("there was an erro reading file... \n");
+		exit(1);
+	}
+
+	write(file_descriptor, text, text_size); /* you need unistd.h to do it works. */
+
+	close(file_descriptor);
 	return (0);
 }
